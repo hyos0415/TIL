@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="JS/0714_jQuery_usercontroll.js"></script>
+
+
+  </head>
+  <body class="container">
+    <br>
+    <!--JS에서는 매시간마다 사용자 이벤트 발생-->
+    <!--상당히 많은 이벤트가 동시에 발생-->
+    <!--이벤트 처리 중 가장 쉬운 방법 Event 속성 이용-->
+    <!--Event 속성이름은 on + Event명 (EX : onclick)-->
+    <!--Event 명은 이미 JS내에서 결정 되어 있음
+        click, dbclick, mousemove, change...
+    >>  onclick, ondbclick, onmousemove, onchange ...
+        Event 발생 주체(source) : button, select, textfield
+        Event가 발생하면 이벤트를 감지해서 JS함수 호출하여 처리
+    >> (Event) Handler
+        모든 Event는 발생 시 브라우저가 세부정보를 담고있는 객체 하나 자동 생성
+    >> (Event) 객체
+        결국 이벤트 소스가 발생된 이벤트를 처리하지 않고 핸들러가 처리
+    >> (Event Delegation Model)
+-->
+    <select onchange="myFUNC()">
+      <option>호날두</option>
+      <option>메시</option>
+      <option>음바페</option>
+    </select>
+    <br>
+    <span>올해의 발롱도르는 :<input type="text" id="myText"></span>
+
+    <br><br><br><br><br><br><br><br>
+
+    <input type="checkbox"><span>게임</span><br>
+    <input type="checkbox"><span>축구</span><br>
+    <input type="checkbox"><span>농구</span><br>
+    <input type="checkbox"><span>운동</span><br>
+    <input type="checkbox"><span>헬스</span><br>
+    <input type="checkbox"><span>테니스</span><br>
+    <br>
+    <button type="button" class="btn btn-primary"
+            onclick="choice_hobby()">취미를 선택하세요</button>
+  </body>
+</html>
