@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+    <h1>{{ question.question_text }}</h1>
+    {% if err_msg %}
+    <h6>{{ err_msg }}</h6>
+    {% endif %}
+    {% comment %}
+    선택된 항목을 가지고 서버 쪽 프로그램을 호출할 수 있도록
+    사용자 입력 양식을 만들어야함
+    {% endcomment %}
+    <form action="{% url 'polls:vote' question.id %}"   {% comment %}
+                            서버 쪽 프로그램을 호출하기위한 URL
+                            action="http://localhost:8000/polss{{ question.id }}/vote/{% endcomment %}
+          method="POST"   {% comment %} Form tag 사용시 일반적으로 POST방식 사용 REST(GET, POST방식...){% endcomment %}
+    >
+        {% comment %}
+            Django Template상에서 form을 이용 시
+            form내부에 {% csrf_token %} 필수
+        {% endcomment %}
+        {% csrf_token %}
+
+        {% comment %}
+            현재 Question instance를 가지고 있는데 이와 연관된
+            Choice 객체를 출력
+        {% endcomment %}
+
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="myChoice"
+                id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">
+                {{ choice.choice_text }}
+            </label>
+            <br>
+        {% endfor %}
+
+        {% comment %}
+            라디오 버튼 사용법
+            <input type="radio" name="myChoice
+                id="choice1 value="aaa">
+            <label for="choice1">서울</label>
+            <br>
+            <input type="radio" name="myChoice
+                id="choice2" value="bbb">
+            <label for="choice2">인천</label>
+            <br>
+            <input type="radio" name="myChoice
+                id="choice3" value="ccc">
+            <label for="choice3">도쿄</label>
+            <br>
+            같은 그룹으로 묶여야함!(그래야 중복선택이 안됨)
+        {% endcomment %}
+
+        <input type="submit" value="Vote!!">
+        {% comment %}
+            data를 자동적으로 결과 전송하는 목적으로 submit 버튼
+        {% endcomment %}
+    </form>
+</body>
+</html>

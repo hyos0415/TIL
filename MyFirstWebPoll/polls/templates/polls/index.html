@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% comment %}
+    탬플릿 언어 차원에서 주석으로 간주
+    {% endcomment %}
+    {%  if question_list %}
+        <ul>
+            {% for question in question_list %}
+                <li><a href="/polls/{{ question.id }}">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>질문이 등록되어 있지 않습니다.</h1>
+    {% endif %}
+</body>
+</html>
